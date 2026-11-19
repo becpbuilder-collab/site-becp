@@ -73,8 +73,17 @@ body:not(.lock) #verrou{display:none}
       <li>Placez les fichiers <code>.json</code> dans le dossier <code>content</code> du site, les photos dans <code>images/uploads</code> et les documents PDF dans <code>documents</code>.</li>
       <li>Déposez le dossier du site sur Netlify (Deploys, glisser-déposer) : les changements sont en ligne.</li>
     </ol>
-    <p style="margin-top:8px">Cette page ne publie rien toute seule : seul celui qui met les fichiers sur Netlify peut modifier le site.</p>
+    <p style="margin-top:8px">Avec la connexion de publication ci-dessous, le bouton « Publier en ligne » met le site à jour en un clic (environ 1 minute). Sans elle, utilisez « Télécharger les fichiers » et les étapes ci-dessus.</p>
   </div>
+
+  <section class="carte" id="s-pub">
+    <h2>Connexion de publication</h2>
+    <label>Dépôt GitHub (compte/nom)<input id="g-repo" placeholder="becpbuilder/site" autocomplete="off"></label>
+    <label>Branche<input id="g-br" value="main" autocomplete="off"></label>
+    <label>Jeton d’accès GitHub<input type="password" id="g-tok" autocomplete="off"></label>
+    <p style="font-size:.9rem;color:#586480;margin-bottom:12px">Le jeton reste uniquement sur cet appareil. Utilisez un jeton limité à ce seul dépôt, avec la permission « Contents : Read and write ».</p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><button type="button" id="g-save">Enregistrer</button><button type="button" class="sec" id="g-del">Oublier la connexion</button><span id="g-etat" style="font-size:.9rem"></span></div>
+  </section>
 
   <nav class="rapide" aria-label="Publier">
     <a href="#s-projets">+ Projet</a><a href="#s-com">+ Communiqué</a><a href="#s-photos">+ Photos</a><a href="#s-videos">+ Vidéo</a><a href="#s-annonce">+ Annonce</a><a href="#s-emploi">+ Offre d’emploi</a><a href="#s-ao">+ Appel d’offres</a>
@@ -154,7 +163,7 @@ body:not(.lock) #verrou{display:none}
 
 <div class="barre">
   <span id="nb">Aucune modification</span>
-  <button type="button" id="dl" disabled>Télécharger les fichiers</button>
+  <span style="display:flex;gap:10px;flex-wrap:wrap"><button type="button" id="pub" disabled>Publier en ligne</button><button type="button" id="dl" disabled>Télécharger les fichiers</button></span>
 </div>
 
 <script>
@@ -181,7 +190,7 @@ async function charger(){
 function marquer(k){
   dirty.add(k);
   $('nb').textContent=dirty.size+' fichier(s) à télécharger';
-  $('dl').disabled=false;
+  $('dl').disabled=false;$('pub').disabled=false;
   liste();
 }
 async function reduire(file){
@@ -294,6 +303,46 @@ $('dl').onclick=()=>{
 };
 window.addEventListener('beforeunload',e=>{if(dirty.size&&$('fin').hidden){e.preventDefault();e.returnValue='';}});
 
+/* Publication en un clic via GitHub */
+const cfg=()=>{try{return JSON.parse(localStorage.getItem('gh')||'{}');}catch(e){return {};}};
+function ghAffiche(){const c=cfg();$('g-repo').value=c.repo||'';$('g-br').value=c.branch||'main';$('g-tok').value=c.token||'';$('g-etat').textContent=(c.token&&c.repo)?'Connexion enregistrée sur cet appareil.':'Non configurée.';}
+$('g-save').onclick=()=>{
+  const c={repo:$('g-repo').value.trim(),branch:$('g-br').value.trim()||'main',token:$('g-tok').value.trim()};
+  if(!/^[\w.-]+\/[\w.-]+$/.test(c.repo)||!c.token){alert('Indiquez le dépôt (compte/nom) et le jeton.');return;}
+  try{localStorage.setItem('gh',JSON.stringify(c));}catch(e){}
+  ghAffiche();
+};
+$('g-del').onclick=()=>{try{localStorage.removeItem('gh');}catch(e){}ghAffiche();};
+async function api(c,path,opt){
+  const r=await fetch('https://api.github.com/repos/'+c.repo+path,Object.assign({},opt,{headers:{Authorization:'Bearer '+c.token,Accept:'application/vnd.github+json','Content-Type':'application/json'}}));
+  if(!r.ok)throw new Error(r.status+' '+(await r.text()).slice(0,140));
+  return r.json();
+}
+const b64=blob=>new Promise(res=>{const f=new FileReader();f.onload=()=>res(f.result.split(',')[1]);f.readAsDataURL(blob);});
+$('pub').onclick=async()=>{
+  const c=cfg();
+  if(!c.token||!c.repo){alert('Configurez d’abord la connexion de publication.');$('s-pub').scrollIntoView();return;}
+  const b=$('pub');b.disabled=true;$('nb').textContent='Publication en cours…';
+  try{
+    const files=[];
+    dirty.forEach(k=>files.push({path:'content/'+F[k],blob:new Blob([JSON.stringify(D[k],null,2)],{type:'application/json'})}));
+    const used=JSON.stringify(D);
+    pend.filter(p=>used.includes(p.name)).forEach(p=>files.push({path:(p.name.startsWith('doc-')?'documents/':'images/uploads/')+p.name,blob:p.blob}));
+    const base=(await api(c,'/git/ref/heads/'+c.branch)).object.sha;
+    const cm=await api(c,'/git/commits/'+base);
+    const tree=[];
+    for(const f of files){
+      const bl=await api(c,'/git/blobs',{method:'POST',body:JSON.stringify({content:await b64(f.blob),encoding:'base64'})});
+      tree.push({path:f.path,mode:'100644',type:'blob',sha:bl.sha});
+    }
+    const t=await api(c,'/git/trees',{method:'POST',body:JSON.stringify({base_tree:cm.tree.sha,tree})});
+    const n=await api(c,'/git/commits',{method:'POST',body:JSON.stringify({message:'Publication depuis la gestion',tree:t.sha,parents:[base]})});
+    await api(c,'/git/refs/heads/'+c.branch,{method:'PATCH',body:JSON.stringify({sha:n.sha})});
+    dirty.clear();$('dl').disabled=true;
+    $('nb').textContent='Publié. Le site se met à jour dans environ 1 minute.';
+  }catch(e){$('nb').textContent='Échec de la publication.';b.disabled=false;alert('Échec de la publication : '+e.message);}
+};
+
 /* Verrou d'accès */
 const SEL="1f9c2c56768aa531575f48fa311ea7db",HASH="780c2f24a1827a79aa79599ad8628c824f44b4924e92e0ad49f8bb33986d4243";
 async function hacher(pw,sel){
@@ -301,7 +350,7 @@ async function hacher(pw,sel){
   const b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(sel),iterations:200000,hash:'SHA-256'},k,256);
   return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
-function ouvrir(){document.body.classList.remove('lock');try{localStorage.setItem('admin','1');}catch(e){}charger();}
+function ouvrir(){document.body.classList.remove('lock');try{localStorage.setItem('admin','1');}catch(e){}charger();ghAffiche();}
 (function verrou(){
   const go=$('v-go'),pw=$('v-pw'),err=$('v-err');
   pw.addEventListener('keydown',e=>{if(e.key==='Enter')go.click();});
