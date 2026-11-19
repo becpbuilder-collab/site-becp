@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Publication | BECP Builder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--nuit:#061633;--marine:#0a2a63;--bleu:#0b3d91;--ciel:#5bbcf0;--papier:#eef2f8;--encre:#0f1b33;--gris:#586480;--trait:#dce4ef;--orange:#f5a524;--r:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:"Barlow",Arial,Helvetica,sans-serif;background:var(--papier);color:var(--encre);line-height:1.6;padding-bottom:104px;-webkit-font-smoothing:antialiased}
+header{background:rgba(6,22,51,.92);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);color:#fff;padding:14px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;position:sticky;top:0;z-index:20}
+header .marque{display:flex;align-items:center;gap:12px}
+header img{height:40px;border-radius:8px;background:#fff}
+header h1{font-family:"Barlow Condensed",Arial,sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:.02em}
+header p{font-size:.95rem}
+header a{color:var(--ciel);text-decoration:none;font-weight:500}
+header a:hover{text-decoration:underline}
+main{max-width:900px;margin:32px auto;padding:0 20px;display:grid;gap:22px}
+.carte{background:#fff;border-radius:var(--r);padding:28px;border:1px solid var(--trait);border-top:4px solid var(--bleu);box-shadow:0 14px 34px -26px rgba(6,22,51,.55)}
+h2{font-family:"Barlow Condensed",Arial,sans-serif;color:var(--nuit);font-size:1.75rem;font-weight:700;margin-bottom:16px;line-height:1.1}
+.aide{background:#fff8e6;border:1px solid var(--orange);border-radius:var(--r);padding:20px 24px;font-size:.97rem}
+.aide ol{margin:10px 0 0 22px}
+.aide li{display:list-item;border:0;padding:2px 0;margin:0}
+label{display:grid;gap:6px;font-weight:600;font-size:.93rem;margin-bottom:14px}
+input,textarea,select{font:inherit;padding:12px 13px;border:1px solid #b8c5da;border-radius:10px;width:100%;background:#fff;color:var(--encre);transition:border-color .2s,box-shadow .2s}
+input:focus,textarea:focus,select:focus{outline:0;border-color:var(--bleu);box-shadow:0 0 0 4px rgba(91,188,240,.35)}
+.ck{display:flex;gap:10px;align-items:center}
+.ck input{width:auto}
+button{font:inherit;font-weight:600;background:var(--bleu);color:#fff;border:0;border-radius:999px;padding:12px 26px;cursor:pointer;transition:background .2s,transform .2s}
+button:hover:not(:disabled){background:var(--nuit);transform:translateY(-1px)}
+button.sec{background:#fff;color:#b3261e;border:1px solid #e3b4b0;padding:6px 14px;font-size:.85rem}
+button.sec:hover{background:#fdeceb!important}
+ul{list-style:none;margin-top:18px;display:grid;gap:10px}
+li{display:flex;align-items:center;gap:14px;border:1px solid var(--trait);border-radius:12px;padding:10px 12px;background:var(--papier)}
+li img{width:68px;height:50px;object-fit:cover;border-radius:8px;background:#d5e3f3}
+li span{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.barre{position:fixed;left:0;right:0;bottom:0;background:rgba(6,22,51,.96);color:#fff;padding:14px 28px;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;z-index:30}
+.barre button{background:var(--orange);color:var(--nuit)}
+.barre button:disabled{opacity:.45;cursor:not-allowed}
+#fin{background:#e4f6ea;border:1px solid #2e8b57;color:#14532d;border-radius:var(--r);padding:18px}
+.lock main,.lock .barre,.lock header p{display:none}
+body:not(.lock) #verrou{display:none}
+#verrou{max-width:440px;margin:64px auto;padding:34px}
+#v-code{font:.85rem monospace}
+.rapide{display:flex;flex-wrap:wrap;gap:10px}
+.rapide a{background:#fff;color:var(--bleu);border:1px solid var(--trait);text-decoration:none;padding:9px 18px;border-radius:999px;font-size:.93rem;font-weight:600;transition:background .2s,color .2s}
+.rapide a:hover{background:var(--bleu);color:#fff}
+@media(max-width:560px){header{padding:12px 16px}.carte{padding:20px}}
+</style>
+</head>
+<body class="lock">
+<header>
+  <div class="marque"><img src="/logo.png" alt="" width="40" height="40"><h1>Publication – BECP Builder</h1></div>
+  <p><a href="/">Retour au site</a> | <a href="#" id="v-out">Verrouiller</a></p>
+</header>
+<section id="verrou" class="carte">
+  <h2>Accès réservé</h2>
+  <p id="v-aide" style="margin-bottom:12px">Entrez votre mot de passe.</p>
+  <label>Mot de passe<input type="password" id="v-pw" autocomplete="current-password"></label>
+  <button type="button" id="v-go">Se connecter</button>
+  <p id="v-err" style="color:#b3261e;margin-top:10px"></p>
+  <textarea id="v-code" rows="3" readonly hidden></textarea>
+</section>
+<main>
+  <div class="aide">
+    <strong>Comment ça marche</strong>
+    <ol>
+      <li>Ajoutez vos annonces, communiqués, photos et vidéos ci-dessous.</li>
+      <li>Cliquez sur « Télécharger les fichiers » en bas de page.</li>
+      <li>Placez les fichiers <code>.json</code> dans le dossier <code>content</code> du site, les photos dans <code>images/uploads</code> et les documents PDF dans <code>documents</code>.</li>
+      <li>Déposez le dossier du site sur Netlify (Deploys, glisser-déposer) : les changements sont en ligne.</li>
+    </ol>
+    <p style="margin-top:8px">Cette page ne publie rien toute seule : seul celui qui met les fichiers sur Netlify peut modifier le site.</p>
+  </div>
+
+  <nav class="rapide" aria-label="Publier">
+    <a href="#s-projets">+ Projet</a><a href="#s-com">+ Communiqué</a><a href="#s-photos">+ Photos</a><a href="#s-videos">+ Vidéo</a><a href="#s-annonce">+ Annonce</a><a href="#s-emploi">+ Offre d’emploi</a><a href="#s-ao">+ Appel d’offres</a>
+  </nav>
+
+  <section class="carte" id="s-projets">
+    <h2>Nouveau projet</h2>
+    <label>Nom du projet<input id="pr-titre" maxlength="140"></label>
+    <label>Lieu<input id="pr-lieu" maxlength="80"></label>
+    <label>Année<input type="number" id="pr-annee" min="2000" max="2100" placeholder="2026"></label>
+    <label>Statut<select id="pr-statut"><option value="termine">Terminé</option><option value="cours">En cours</option><option value="etude">En étude</option></select></label>
+    <label>Description<textarea id="pr-desc" rows="4"></textarea></label>
+    <label>Photo principale (facultative)<input type="file" id="pr-img" accept="image/*"></label>
+    <button type="button" id="pr-ok">Publier le projet</button>
+    <ul id="l-pr"></ul>
+  </section>
+
+  <section class="carte" id="s-annonce">
+    <h2>Annonce (bandeau en haut du site)</h2>
+    <label class="ck"><input type="checkbox" id="a-actif"> Afficher l’annonce</label>
+    <label>Texte<input id="a-texte" maxlength="160"></label>
+    <label>Lien du bouton (facultatif)<input id="a-lien" placeholder="https://… ou #contact"></label>
+    <label>Texte du bouton (facultatif)<input id="a-bouton" maxlength="30"></label>
+    <button type="button" id="a-ok">Enregistrer l’annonce</button>
+  </section>
+
+  <section class="carte" id="s-com">
+    <h2>Communiqués</h2>
+    <label>Titre<input id="c-titre" maxlength="120"></label>
+    <label>Date<input type="date" id="c-date"></label>
+    <label>Texte<textarea id="c-texte" rows="4"></textarea></label>
+    <label>Image (facultative)<input type="file" id="c-img" accept="image/*"></label>
+    <button type="button" id="c-ok">Ajouter le communiqué</button>
+    <ul id="l-com"></ul>
+  </section>
+
+  <section class="carte" id="s-photos">
+    <h2>Photos</h2>
+    <label>Photos (plusieurs possibles, réduites automatiquement)<input type="file" id="p-img" accept="image/*" multiple></label>
+    <label>Légende (facultative)<input id="p-leg" maxlength="100"></label>
+    <button type="button" id="p-ok">Ajouter les photos</button>
+    <ul id="l-pho"></ul>
+  </section>
+
+  <section class="carte" id="s-videos">
+    <h2>Vidéos</h2>
+    <label>Titre<input id="v-titre" maxlength="100"></label>
+    <label>Lien YouTube<input id="v-lien" placeholder="https://www.youtube.com/watch?v=…"></label>
+    <button type="button" id="v-ok">Ajouter la vidéo</button>
+    <ul id="l-vid"></ul>
+  </section>
+
+  <section class="carte" id="s-emploi">
+    <h2>Offres d’emploi</h2>
+    <label>Intitulé du poste<input id="e-titre" maxlength="120"></label>
+    <label>Lieu<input id="e-lieu" maxlength="80" placeholder="Kimpese, Matadi…"></label>
+    <label>Type de contrat<input id="e-contrat" maxlength="40" placeholder="CDI, CDD, stage…"></label>
+    <label>Date limite de candidature<input type="date" id="e-date"></label>
+    <label>Description (missions, profil recherché)<textarea id="e-desc" rows="5"></textarea></label>
+    <button type="button" id="e-ok">Publier l’offre</button>
+    <ul id="l-emp"></ul>
+  </section>
+
+  <section class="carte" id="s-ao">
+    <h2>Appels d’offres</h2>
+    <label>Objet de l’appel d’offres<input id="o-titre" maxlength="160"></label>
+    <label>Référence<input id="o-ref" maxlength="40"></label>
+    <label>Date limite de dépôt<input type="date" id="o-date"></label>
+    <label>Description<textarea id="o-desc" rows="4"></textarea></label>
+    <label>Dossier d’appel d’offres (PDF, 10 Mo maximum)<input type="file" id="o-doc" accept=".pdf,application/pdf"></label>
+    <button type="button" id="o-ok">Publier l’appel d’offres</button>
+    <ul id="l-ao"></ul>
+  </section>
+
+  <div id="fin" hidden>Fichiers téléchargés. Placez-les dans les bons dossiers, puis redéployez le site sur Netlify.</div>
+</main>
+
+<div class="barre">
+  <span id="nb">Aucune modification</span>
+  <button type="button" id="dl" disabled>Télécharger les fichiers</button>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const F={annonce:'annonce.json',communiques:'communiques.json',galerie:'galerie.json',videos:'videos.json',emplois:'emplois.json',appels:'appels.json',projets:'projets.json'};
+const D={annonce:{actif:false,texte:'',lien:'',bouton:''},communiques:{items:[]},galerie:{photos:[]},videos:{videos:[]},emplois:{offres:[]},appels:{appels:[]},projets:{projets:[]}};
+const dirty=new Set(),pend=[];
+
+async function charger(){
+  for(const k in F){
+    try{const r=await fetch('content/'+F[k],{cache:'no-store'});if(r.ok)D[k]=await r.json();}catch(e){}
+  }
+  D.communiques.items=D.communiques.items||[];
+  D.galerie.photos=D.galerie.photos||[];
+  D.videos.videos=D.videos.videos||[];
+  D.emplois.offres=D.emplois.offres||[];
+  D.appels.appels=D.appels.appels||[];
+  D.projets.projets=D.projets.projets||[];
+  const a=D.annonce;
+  $('a-actif').checked=!!a.actif;$('a-texte').value=a.texte||'';$('a-lien').value=a.lien||'';$('a-bouton').value=a.bouton||'';
+  $('c-date').value=new Date().toISOString().slice(0,10);
+  liste();
+}
+function marquer(k){
+  dirty.add(k);
+  $('nb').textContent=dirty.size+' fichier(s) à télécharger';
+  $('dl').disabled=false;
+  liste();
+}
+async function reduire(file){
+  const bmp=await createImageBitmap(file);
+  const r=Math.min(1,1600/bmp.width);
+  const c=document.createElement('canvas');
+  c.width=Math.round(bmp.width*r);c.height=Math.round(bmp.height*r);
+  c.getContext('2d').drawImage(bmp,0,0,c.width,c.height);
+  const blob=await new Promise(res=>c.toBlob(res,'image/jpeg',.82));
+  const name='photo-'+Date.now()+'-'+Math.random().toString(36).slice(2,6)+'.jpg';
+  pend.push({name,blob});
+  return '/images/uploads/'+name;
+}
+function rend(id,arr,fmt,key){
+  const ul=$(id);ul.textContent='';
+  arr.forEach((x,i)=>{
+    const li=document.createElement('li'),[img,txt]=fmt(x);
+    if(img){
+      const im=document.createElement('img');
+      const p=pend.find(q=>img.endsWith(q.name));
+      im.src=p?URL.createObjectURL(p.blob):img.replace(/^\//,'');im.alt='';
+      li.appendChild(im);
+    }
+    const sp=document.createElement('span');sp.textContent=txt;li.appendChild(sp);
+    const b=document.createElement('button');b.type='button';b.className='sec';b.textContent='Supprimer';
+    b.onclick=()=>{if(confirm('Supprimer cet élément ?')){arr.splice(i,1);marquer(key);}};
+    li.appendChild(b);ul.appendChild(li);
+  });
+}
+function liste(){
+  rend('l-com',D.communiques.items,c=>[c.image,(c.date||'')+' | '+c.titre],'communiques');
+  rend('l-pho',D.galerie.photos,p=>[p.image,p.legende||p.image],'galerie');
+  rend('l-pr',D.projets.projets,p=>[p.image,(p.annee?p.annee+' | ':'')+p.titre+(p.statut?' ('+p.statut+')':'')],'projets');
+  rend('l-emp',D.emplois.offres,e=>[null,e.titre+(e.date_limite?' | limite '+e.date_limite:'')],'emplois');
+  rend('l-ao',D.appels.appels,a=>[null,(a.reference?a.reference+' | ':'')+a.titre],'appels');
+  rend('l-vid',D.videos.videos,v=>[null,(v.titre||'Vidéo')+' | '+(v.lien||v.fichier||'')],'videos');
+}
+
+$('a-ok').onclick=()=>{
+  D.annonce={actif:$('a-actif').checked,texte:$('a-texte').value.trim(),lien:$('a-lien').value.trim(),bouton:$('a-bouton').value.trim()};
+  marquer('annonce');
+};
+$('c-ok').onclick=async()=>{
+  const t=$('c-titre').value.trim();
+  if(!t){alert('Le titre est obligatoire.');return;}
+  const it={titre:t,date:$('c-date').value,texte:$('c-texte').value.trim()};
+  const f=$('c-img').files[0];if(f)it.image=await reduire(f);
+  D.communiques.items.unshift(it);
+  ['c-titre','c-texte','c-img'].forEach(i=>$(i).value='');
+  marquer('communiques');
+};
+$('p-ok').onclick=async()=>{
+  const fs=[...$('p-img').files];
+  if(!fs.length){alert('Choisissez au moins une photo.');return;}
+  for(const f of fs)D.galerie.photos.push({image:await reduire(f),legende:$('p-leg').value.trim()});
+  $('p-img').value='';$('p-leg').value='';
+  marquer('galerie');
+};
+$('v-ok').onclick=()=>{
+  const l=$('v-lien').value.trim();
+  if(!/^https:\/\/(www\.)?(youtube\.com|youtu\.be)\//.test(l)){alert('Collez un lien YouTube valide.');return;}
+  D.videos.videos.push({titre:$('v-titre').value.trim(),lien:l});
+  $('v-titre').value='';$('v-lien').value='';
+  marquer('videos');
+};
+
+$('pr-ok').onclick=async()=>{
+  const t=$('pr-titre').value.trim();
+  if(!t){alert('Le nom du projet est obligatoire.');return;}
+  const it={titre:t,lieu:$('pr-lieu').value.trim(),annee:$('pr-annee').value,statut:$('pr-statut').value,description:$('pr-desc').value.trim()};
+  const f=$('pr-img').files[0];if(f)it.image=await reduire(f);
+  D.projets.projets.unshift(it);
+  ['pr-titre','pr-lieu','pr-annee','pr-desc','pr-img'].forEach(i=>$(i).value='');
+  marquer('projets');
+};
+function garderPdf(f){
+  if(!/\.pdf$/i.test(f.name)){alert('Le document doit être un fichier PDF.');return null;}
+  if(f.size>10*1024*1024){alert('Document trop lourd (10 Mo maximum).');return null;}
+  const nom='doc-'+Date.now()+'-'+f.name.toLowerCase().replace(/[^a-z0-9.]+/g,'-').replace(/^-+/,'');
+  pend.push({name:nom,blob:f});
+  return '/documents/'+nom;
+}
+$('e-ok').onclick=()=>{
+  const t=$('e-titre').value.trim();
+  if(!t){alert('L’intitulé est obligatoire.');return;}
+  D.emplois.offres.unshift({titre:t,lieu:$('e-lieu').value.trim(),contrat:$('e-contrat').value.trim(),date_limite:$('e-date').value,description:$('e-desc').value.trim()});
+  ['e-titre','e-lieu','e-contrat','e-date','e-desc'].forEach(i=>$(i).value='');
+  marquer('emplois');
+};
+$('o-ok').onclick=()=>{
+  const t=$('o-titre').value.trim();
+  if(!t){alert('L’objet est obligatoire.');return;}
+  let doc='';const f=$('o-doc').files[0];
+  if(f){doc=garderPdf(f);if(doc===null)return;}
+  D.appels.appels.unshift({titre:t,reference:$('o-ref').value.trim(),date_limite:$('o-date').value,description:$('o-desc').value.trim(),document:doc});
+  ['o-titre','o-ref','o-date','o-desc','o-doc'].forEach(i=>$(i).value='');
+  marquer('appels');
+};
+
+function tel(nom,blob){
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);a.download=nom;
+  document.body.appendChild(a);a.click();a.remove();
+}
+$('dl').onclick=()=>{
+  const used=JSON.stringify(D);let n=0;
+  dirty.forEach(k=>setTimeout(()=>tel(F[k],new Blob([JSON.stringify(D[k],null,2)],{type:'application/json'})),n++*400));
+  pend.filter(p=>used.includes(p.name)).forEach(p=>setTimeout(()=>tel(p.name,p.blob),n++*400));
+  $('fin').hidden=false;
+};
+window.addEventListener('beforeunload',e=>{if(dirty.size&&$('fin').hidden){e.preventDefault();e.returnValue='';}});
+
+/* Verrou d'accès */
+const SEL="1f9c2c56768aa531575f48fa311ea7db",HASH="780c2f24a1827a79aa79599ad8628c824f44b4924e92e0ad49f8bb33986d4243";
+async function hacher(pw,sel){
+  const k=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveBits']);
+  const b=await crypto.subtle.deriveBits({name:'PBKDF2',salt:new TextEncoder().encode(sel),iterations:200000,hash:'SHA-256'},k,256);
+  return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+function ouvrir(){document.body.classList.remove('lock');try{localStorage.setItem('admin','1');}catch(e){}charger();}
+(function verrou(){
+  const go=$('v-go'),pw=$('v-pw'),err=$('v-err');
+  pw.addEventListener('keydown',e=>{if(e.key==='Enter')go.click();});
+  $('v-out').onclick=e=>{e.preventDefault();try{sessionStorage.removeItem('gestion');localStorage.removeItem('admin');}catch(x){}location.reload();};
+  if(!HASH){
+    $('v-aide').textContent='Première utilisation : choisissez un mot de passe (12 caractères minimum). Il n’est envoyé nulle part.';
+    go.textContent='Créer le code de verrouillage';
+    go.onclick=async()=>{
+      if(pw.value.length<12){err.textContent='12 caractères minimum.';return;}
+      const sel=[...crypto.getRandomValues(new Uint8Array(16))].map(x=>x.toString(16).padStart(2,'0')).join('');
+      const c=$('v-code');c.hidden=false;c.value='const SEL="'+sel+'",HASH="'+await hacher(pw.value,sel)+'";';
+      err.style.color='#14532d';
+      err.textContent='Copiez cette ligne dans gestion.html à la place de : const SEL="",HASH=""; puis redéployez le site.';
+    };
+    return;
+  }
+  try{if(sessionStorage.getItem('gestion')===HASH){ouvrir();return;}}catch(e){}
+  let essais=0;
+  go.onclick=async()=>{
+    let ok=false;try{ok=(await hacher(pw.value,SEL))===HASH;}catch(x){err.textContent='Une connexion sécurisée (https) est nécessaire.';return;}if(ok){try{sessionStorage.setItem('gestion',HASH);}catch(e){}ouvrir();return;}
+    essais++;err.textContent='Mot de passe incorrect.';pw.value='';
+    go.disabled=true;setTimeout(()=>{go.disabled=false;},Math.min(essais*1500,15000));
+  };
+})();
+</script>
+</body>
+</html>
