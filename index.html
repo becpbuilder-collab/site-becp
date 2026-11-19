@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add('js')</script>
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; frame-src https://www.youtube-nocookie.com; media-src 'self'; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https://*.googletagmanager.com https://*.google-analytics.com; connect-src 'self' https://*.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://script.google.com https://script.googleusercontent.com; frame-src https://www.youtube-nocookie.com; media-src 'self'; form-action https://formsubmit.co; base-uri 'self'; object-src 'none'">
 <title>BECP Builder | Bureau d’étude et construction à Kimpese, RDC</title>
 <meta name="description" content="BECP Builder, bureau d’étude et de conception des projets de construction à Kimpese (Kongo Central, RDC) : génie civil, rénovation, construction métallique, maintenance des ouvrages, études techniques et formation.">
 <meta name="author" content="BECP Builder">
@@ -50,173 +50,214 @@
 </script>
 
 <style>
-:root{--nuit:#061633;--marine:#0a2a63;--bleu:#0b3d91;--ciel:#5bbcf0;--papier:#f3f6fb;--encre:#0f1b33;--gris:#586480;--trait:#dce4ef;--orange:#f5a524;--r:14px;
---titre:"Barlow Condensed","Arial Narrow",Arial,sans-serif;--texte:"Barlow",Arial,Helvetica,sans-serif;--ombre:0 22px 50px -24px rgba(6,22,51,.45)}
+:root{
+  --nuit:#082456; --bleu:#0b3d91; --ciel:#4fb3e8; --papier:#f4f7fb;
+  --encre:#14213d; --gris:#5b6880; --trait:#d3dcea; --orange:#f5a524;
+  --titre:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --texte:"Barlow",Arial,Helvetica,sans-serif;
+}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:88px}
-body{font-family:var(--texte);color:var(--encre);line-height:1.7;font-size:1.08rem;background:#fff;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--texte);color:var(--encre);line-height:1.65;font-size:1.05rem;background:#fff}
 a{color:var(--bleu)}
 :focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 .skip{position:absolute;left:-999px;top:8px;background:#fff;color:var(--nuit);padding:8px 14px;z-index:100}
 .skip:focus{left:8px}
-.wrap{max-width:1180px;margin:auto;padding:0 28px}
-header{background:rgba(6,22,51,.86);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.1);transition:box-shadow .3s}
-header.scrolled{box-shadow:0 10px 30px rgba(0,0,0,.35)}
-.bar{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
-.logo{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-family:var(--titre);font-weight:700;font-size:1.7rem;letter-spacing:.03em}
-.logo img{height:44px;width:auto;border-radius:8px;background:#fff}
-nav{display:flex;gap:30px;align-items:center}
-nav a,.dd-b{position:relative;color:#fff;text-decoration:none;font:500 1rem var(--texte);padding:8px 0;background:none;border:0;cursor:pointer;letter-spacing:.01em}
-nav a::after,.dd-b::after{content:"";position:absolute;left:0;bottom:2px;height:2px;width:100%;background:var(--orange);transform:scaleX(0);transform-origin:left;transition:transform .25s}
-nav a:hover::after,.dd-b:hover::after{transform:scaleX(1)}
-.langues{display:flex;gap:2px;padding:3px;border:1px solid rgba(255,255,255,.28);border-radius:999px}
-.langues button{background:transparent;border:0;color:#fff;font:600 .82rem var(--texte);padding:6px 13px;border-radius:999px;cursor:pointer;transition:background .2s}
-.langues button[aria-pressed="true"]{background:#fff;color:var(--nuit)}
-.langues button:hover:not([aria-pressed="true"]){background:rgba(255,255,255,.14)}
-.hero{position:relative;color:#fff;padding:120px 0 128px;overflow:hidden;
-background:radial-gradient(900px 480px at 82% 8%,rgba(91,188,240,.28),transparent 62%),radial-gradient(700px 420px at 4% 100%,rgba(11,61,145,.75),transparent 65%),linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px),var(--nuit);background-size:auto,auto,48px 48px,48px 48px,auto}
-.hero .wrap{display:grid;grid-template-columns:1.45fr 1fr;gap:64px;align-items:center}
-.hero h1{font-family:var(--titre);font-weight:700;font-size:clamp(3rem,8vw,6.2rem);line-height:.95;letter-spacing:-.005em;margin-bottom:26px}
-.hero p.sous{font-size:1.25rem;max-width:32em;color:#d6e3f7;margin-bottom:38px}
+.wrap{max-width:1120px;margin:auto;padding:0 24px}
+
+/* En-tête */
+header{background:var(--nuit);position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,.12)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.logo{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-family:var(--titre);font-weight:700;font-size:1.6rem;letter-spacing:.02em}
+.logo img{height:44px;width:auto}
+nav{display:flex;gap:26px}
+nav a{color:#fff;text-decoration:none;font-weight:500;font-size:.98rem;padding:6px 0;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--ciel)}
+.langues{display:flex;gap:6px}
+.langues button{background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;font:600 .85rem var(--texte);padding:6px 11px;border-radius:4px;cursor:pointer}
+.langues button[aria-pressed="true"]{background:#fff;color:var(--nuit);border-color:#fff}
+.langues button:hover{border-color:var(--ciel)}
+
+/* Hero : fond de plan technique */
+.hero{background-color:var(--nuit);color:#fff;
+  background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:44px 44px;padding:88px 0}
+.hero .wrap{display:grid;grid-template-columns:1.5fr 1fr;gap:56px;align-items:center}
+.hero h1{font-family:var(--titre);font-weight:700;font-size:clamp(2.8rem,7vw,5.2rem);line-height:1;letter-spacing:.01em;margin-bottom:20px}
+.hero p.sous{font-size:1.2rem;max-width:34em;color:#dbe6f7;margin-bottom:32px}
 .actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-block;padding:16px 32px;border-radius:999px;font-weight:600;text-decoration:none;font-size:1rem;border:2px solid transparent;transition:transform .2s,box-shadow .2s,background .2s}
-.btn:hover{transform:translateY(-2px)}
-.btn-1{background:var(--orange);color:var(--nuit);box-shadow:0 12px 28px -10px rgba(245,165,36,.7)}
+.btn{display:inline-block;padding:14px 26px;border-radius:4px;font-weight:600;text-decoration:none;font-size:1rem;border:2px solid transparent}
+.btn-1{background:var(--orange);color:var(--nuit)}
 .btn-1:hover{background:#ffb93f}
-.btn-2{border-color:rgba(255,255,255,.5);color:#fff}
-.btn-2:hover{background:rgba(255,255,255,.12)}
-.cartouche{border:1px solid rgba(255,255,255,.3);background:rgba(6,22,51,.62);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-radius:var(--r);overflow:hidden;font-size:1rem;box-shadow:var(--ombre)}
-.cartouche div{display:grid;grid-template-columns:100px 1fr;border-bottom:1px solid rgba(255,255,255,.18)}
+.btn-2{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-2:hover{background:rgba(255,255,255,.1)}
+.cartouche{border:1px solid rgba(255,255,255,.4);background:rgba(8,36,86,.85);font-size:.98rem}
+.cartouche div{display:grid;grid-template-columns:96px 1fr;border-bottom:1px solid rgba(255,255,255,.25)}
 .cartouche div:last-child{border-bottom:0}
-.cartouche dt,.cartouche dd{padding:14px 18px}
-.cartouche dt{color:var(--ciel);border-right:1px solid rgba(255,255,255,.18);font-weight:500}
+.cartouche dt,.cartouche dd{padding:12px 14px}
+.cartouche dt{color:var(--ciel);border-right:1px solid rgba(255,255,255,.25);font-weight:500}
 .cartouche a{color:#fff;text-decoration:none;word-break:break-word}
 .cartouche a:hover{text-decoration:underline}
-section{padding:104px 0}
-h2{font-family:var(--titre);font-weight:700;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.05;color:var(--nuit);margin-bottom:16px;letter-spacing:.005em}
-h2::after{content:"";display:block;width:64px;height:4px;background:var(--orange);border-radius:2px;margin-top:16px}
-.intro{color:var(--gris);max-width:38em;margin:22px 0 52px;font-size:1.12rem}
-.trois{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
-.trois div{background:var(--papier);border:1px solid var(--trait);border-top:4px solid var(--bleu);border-radius:var(--r);padding:30px 28px;transition:transform .25s,box-shadow .25s}
-.trois div:hover{transform:translateY(-6px);box-shadow:var(--ombre)}
-.trois h3,.metiers h3,.com h3,.offre h3{font-family:var(--titre);font-weight:600;font-size:1.65rem;color:var(--bleu);margin-bottom:8px;line-height:1.15}
+
+/* Sections */
+section{padding:84px 0}
+h2{font-family:var(--titre);font-weight:700;font-size:clamp(2rem,4vw,2.9rem);line-height:1.1;color:var(--nuit);margin-bottom:12px}
+.intro{color:var(--gris);max-width:40em;margin-bottom:44px}
+.trois{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.trois h3,.metiers h3{font-family:var(--titre);font-weight:600;font-size:1.5rem;color:var(--bleu);margin-bottom:8px}
+.trois div{border-top:3px solid var(--bleu);padding-top:16px}
 .gris{background:var(--papier)}
-.metiers{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
-.metiers article{background:#fff;border:1px solid var(--trait);border-radius:var(--r);padding:32px 30px;transition:transform .25s,box-shadow .25s,border-color .25s}
-.metiers article:hover{transform:translateY(-6px);box-shadow:var(--ombre);border-color:var(--ciel)}
-.logiciels{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;list-style:none}
-.logiciels li{border:1px solid var(--bleu);color:var(--bleu);padding:7px 18px;border-radius:999px;font-weight:600;font-size:.95rem;background:#fff}
-.sous-titre{font-family:var(--titre);font-weight:600;font-size:1.7rem;color:var(--bleu);margin:48px 0 0}
-.direction{margin-top:40px;padding:18px 24px;border-left:4px solid var(--orange);background:var(--papier);border-radius:0 var(--r) var(--r) 0;display:inline-block}
-.formation{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
-.methode{background:radial-gradient(800px 400px at 90% 0,rgba(91,188,240,.25),transparent 60%),var(--marine);color:#fff}
-.methode h2{color:#fff}.methode .intro{color:#d4e2f7}
-.etapes{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.etapes li{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:var(--r);padding:28px 24px;transition:background .25s,transform .25s}
-.etapes li:hover{background:rgba(255,255,255,.13);transform:translateY(-5px)}
-.etapes span{font-family:var(--titre);font-size:3.4rem;font-weight:700;color:var(--orange);line-height:1;display:block}
-.etapes h3{font-family:var(--titre);font-size:1.7rem;font-weight:600;margin:8px 0 6px}
-.etapes p{color:#e1ebfa}
-.galerie{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
-.galerie figure{aspect-ratio:4/3;background:linear-gradient(135deg,#e3ebf6,#cfdcee);border-radius:var(--r);overflow:hidden;box-shadow:0 10px 30px -18px rgba(6,22,51,.5)}
-.galerie img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in;transition:transform .6s}
-.galerie figure:hover img{transform:scale(1.06)}
-.galerie figcaption{font-size:.92rem;color:var(--gris);padding:10px 4px}
-.galerie figure.avec{aspect-ratio:auto;background:none;box-shadow:none}
-.galerie figure.avec img{aspect-ratio:4/3;border-radius:var(--r)}
-.coms{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:28px}
-.com{background:#fff;border:1px solid var(--trait);border-radius:var(--r);overflow:hidden;padding:0 24px 26px;box-shadow:0 10px 30px -22px rgba(6,22,51,.5)}
-.com img{width:calc(100% + 48px);margin:0 -24px 18px;aspect-ratio:16/9;object-fit:cover;display:block}
-.com:not(:has(img)){padding-top:26px}
+.metiers{display:grid;grid-template-columns:repeat(2,1fr);gap:0 56px}
+.metiers article{padding:26px 0;border-top:1px solid var(--trait)}
+.logiciels{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;list-style:none}
+.logiciels li{border:1px solid var(--bleu);color:var(--bleu);padding:6px 14px;border-radius:4px;font-weight:600;background:#fff}
+.formation{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+
+.galerie{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.galerie figure{aspect-ratio:4/3;background:var(--papier) linear-gradient(135deg,#e3ebf6,#cfdcee);border-radius:4px;overflow:hidden}
+.galerie img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Communiqués */
+.coms{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px}
+.com{border-top:3px solid var(--bleu);padding-top:16px}
+.com img{width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:4px;margin-bottom:14px;display:block}
 .com time{color:var(--gris);font-size:.9rem}
+.com h3{font-family:var(--titre);font-weight:600;font-size:1.5rem;color:var(--bleu);margin:4px 0 8px}
 .com p{white-space:pre-line}
-.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:26px}
-.vid iframe,.vid video{width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r);background:#000;display:block}
-.vid figcaption{padding:10px 2px;font-weight:600;color:var(--nuit)}
-.offres{display:grid;gap:18px}
-.offre{background:#fff;border:1px solid var(--trait);border-left:5px solid var(--bleu);border-radius:var(--r);padding:24px 28px;display:grid;gap:8px;transition:box-shadow .25s}
-.offre:hover{box-shadow:var(--ombre)}
-.offre .meta{color:var(--gris);font-size:.97rem}
+.galerie figcaption{font-size:.9rem;color:var(--gris);padding:8px 2px}
+.galerie figure.avec{aspect-ratio:auto;background:none}
+.galerie figure.avec img{aspect-ratio:4/3;border-radius:4px}
+
+/* Menu mobile, méthode, lightbox, animations, cookies */
+.menu{display:none;background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;font:600 .9rem var(--texte);padding:7px 14px;border-radius:4px;cursor:pointer}
+.methode{background:var(--bleu);color:#fff}
+.methode h2{color:#fff}
+.methode .intro{color:#d4e2f7}
+.etapes{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.etapes li{border-top:3px solid var(--ciel);padding-top:16px}
+.etapes span{font-family:var(--titre);font-size:2.6rem;font-weight:700;color:var(--ciel);line-height:1;display:block}
+.etapes h3{font-family:var(--titre);font-size:1.5rem;font-weight:600;margin:6px 0}
+.etapes p{color:#e1ebfa}
+.galerie img{cursor:zoom-in}
+dialog{border:0;background:transparent;max-width:min(94vw,1100px);max-height:92vh;margin:auto;padding:0;overflow:visible}
+dialog::backdrop{background:rgba(6,26,66,.92)}
+dialog img{max-width:100%;max-height:86vh;display:block;margin:auto;border-radius:4px}
+.lb-x{position:absolute;top:-46px;right:0;background:none;border:0;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer}
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.vu{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}}
+.cookies{position:fixed;left:0;right:0;bottom:0;z-index:80;background:#fff;color:var(--encre);padding:16px 24px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 -4px 18px rgba(0,0,0,.18);border-top:3px solid var(--orange)}
+.cookies[hidden]{display:none}
+.cookies p{font-size:.95rem;max-width:60em}
+.cookies div{display:flex;gap:10px}
+.cookies button{font:600 .95rem var(--texte);padding:10px 20px;border-radius:4px;cursor:pointer;border:2px solid var(--bleu)}
+#ck-ok{background:var(--bleu);color:#fff}
+#ck-no{background:#fff;color:var(--bleu)}
+.note{font-size:.85rem;color:var(--gris);font-weight:400}
+footer a{color:#fff}
+
+/* Menu déroulant, vidéos, annonce */
+.dd{position:relative}
+.dd-b{background:none;border:0;border-bottom:2px solid transparent;color:#fff;font:500 .98rem var(--texte);padding:6px 0;cursor:pointer}
+.dd-b:hover{border-color:var(--ciel)}
+.dd-m{display:none;position:absolute;top:100%;left:-14px;min-width:190px;background:var(--nuit);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:6px 0;box-shadow:0 10px 24px rgba(0,0,0,.3)}
+.dd.ouvert .dd-m{display:block}
+.dd-m a{display:block;padding:10px 16px;border-bottom:0}
+.dd-m a:hover{background:rgba(255,255,255,.08)}
+.dd-m a[hidden]{display:none}
+.vids{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.vid iframe,.vid video{width:100%;aspect-ratio:16/9;border:0;border-radius:4px;background:#000;display:block}
+.vid figcaption{padding:8px 2px;font-weight:600;color:var(--nuit)}
+.annonce{background:var(--orange);color:var(--nuit);padding:10px 52px 10px 20px;text-align:center;font-weight:600;position:relative;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
+.annonce[hidden]{display:none}
+.an-btn{background:var(--nuit);color:#fff;padding:6px 16px;border-radius:4px;text-decoration:none;font-size:.92rem}
+#an-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--nuit)}
+
+/* Emplois et appels d'offres */
+.offres{display:grid;gap:16px}
+.offre{background:#fff;border:1px solid var(--trait);border-left:4px solid var(--bleu);border-radius:4px;padding:20px 22px;display:grid;gap:6px}
+.offre h3{font-family:var(--titre);font-weight:600;font-size:1.5rem;color:var(--bleu)}
+.offre .meta{color:var(--gris);font-size:.95rem}
 .offre .desc{white-space:pre-line}
-.offre.clos{opacity:.62;border-left-color:var(--gris)}
-.tag{display:inline-block;justify-self:start;background:var(--papier);border:1px solid var(--trait);color:var(--gris);padding:2px 12px;border-radius:999px;font-size:.85rem;font-weight:600}
-.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-.btn-3{background:var(--bleu);color:#fff;padding:12px 26px}
+.offre.clos{opacity:.65;border-left-color:var(--gris)}
+.tag{display:inline-block;justify-self:start;background:var(--papier);border:1px solid var(--trait);color:var(--gris);padding:2px 10px;border-radius:4px;font-size:.85rem;font-weight:600}
+.acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.btn-3{background:var(--bleu);color:#fff;padding:11px 22px}
 .btn-3:hover{background:var(--nuit)}
-.faq-liste{max-width:860px}
-.faq-liste details{background:#fff;border:1px solid var(--trait);border-radius:var(--r);padding:20px 26px;margin-bottom:12px}
-.faq-liste summary{cursor:pointer;font-weight:600;color:var(--nuit);font-size:1.1rem;list-style:none;display:flex;justify-content:space-between;gap:16px}
-.faq-liste summary::-webkit-details-marker{display:none}
-.faq-liste summary::after{content:"+";color:var(--orange);font-size:1.6rem;line-height:1}
-.faq-liste details[open] summary::after{content:"–"}
-.faq-liste p{margin-top:12px;color:var(--gris)}
-.cta{background:linear-gradient(120deg,var(--bleu),var(--marine));color:#fff;text-align:center;padding:84px 0}
-.cta h2{color:#fff;max-width:18em;margin:0 auto 14px}
-.cta h2::after{margin:16px auto 0}
-.cta p{color:#d4e2f7;max-width:34em;margin:20px auto 34px}
-.cta .actions{justify-content:center}
-.contact{background:radial-gradient(800px 420px at 8% 0,rgba(91,188,240,.2),transparent 60%),var(--nuit);color:#fff}
+
+/* Compléments */
+.direction{margin-top:32px;font-size:1.05rem}
+.sous-titre{font-family:var(--titre);font-weight:600;font-size:1.5rem;color:var(--bleu);margin:36px 0 0}
+.faq-liste{max-width:820px}
+.faq-liste details{border-top:1px solid var(--trait);padding:16px 0}
+.faq-liste details:last-child{border-bottom:1px solid var(--trait)}
+.faq-liste summary{cursor:pointer;font-weight:600;color:var(--nuit);font-size:1.08rem}
+.faq-liste p{margin-top:10px;color:var(--gris)}
+
+/* Bouton Publication et projets */
+.pub{background:var(--orange);color:var(--nuit);font-weight:700;font-size:.9rem;padding:8px 16px;border-radius:4px;text-decoration:none}
+.pub:hover{background:#ffb93f}
+.projets{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px}
+.projet{background:#fff;border:1px solid var(--trait);border-radius:4px;overflow:hidden;align-self:start}
+.projet img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:var(--papier)}
+.projet .corps{padding:18px 20px;display:grid;gap:6px}
+.projet h3{font-family:var(--titre);font-weight:600;font-size:1.5rem;color:var(--bleu)}
+.projet .meta{color:var(--gris);font-size:.95rem}
+.projet .desc{white-space:pre-line}
+
+/* Formulaire de candidature */
+button.btn{font:600 1rem var(--texte);cursor:pointer}
+#pc{background:#fff;color:var(--encre);border-radius:6px;padding:28px;width:min(94vw,560px);overflow:auto}
+#pc form{padding:0}
+#pc h3{font-family:var(--titre);font-weight:600;font-size:1.6rem;color:var(--nuit);margin-bottom:14px;padding-right:28px}
+.pc-x{position:absolute;top:8px;right:14px;background:none;border:0;font-size:2rem;line-height:1;cursor:pointer;color:var(--nuit)}
+.pc-aide{font-size:.85rem;color:var(--gris);font-weight:400}
+.cons{display:flex;gap:10px;align-items:flex-start;font-weight:400}
+.cons input{width:auto;margin-top:5px}
+#pc-msg{font-weight:600}
+.pc-ok{color:#14532d}
+.pc-err{color:#b3261e}
+
+/* Messages vides */
+.vide{color:var(--gris);background:#fff;border:1px dashed var(--trait);border-radius:4px;padding:22px}
+
+/* Contact */
+.contact{background:var(--nuit);color:#fff}
 .contact h2{color:#fff}
-.contact .grille{display:grid;grid-template-columns:1fr 1.2fr;gap:64px}
+.contact .grille{display:grid;grid-template-columns:1fr 1.2fr;gap:56px}
 .contact .intro{color:#c5d4ec}
-.contact address{font-style:normal;line-height:2.1}
+.contact address{font-style:normal;line-height:2}
 .contact address a{color:#fff}
-form{display:grid;gap:16px;background:#fff;color:var(--encre);padding:36px;border-radius:20px;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
-label{font-weight:600;font-size:.95rem;display:grid;gap:7px}
-input,select,textarea{font:inherit;padding:13px 14px;border:1px solid #b8c5da;border-radius:10px;width:100%;background:#fff;color:var(--encre);transition:border-color .2s,box-shadow .2s}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--bleu);box-shadow:0 0 0 4px rgba(91,188,240,.35)}
-form button{background:var(--bleu);color:#fff;border:0;padding:16px;border-radius:999px;font:600 1.05rem var(--texte);cursor:pointer;transition:background .2s,transform .2s}
-form button:hover{background:var(--nuit);transform:translateY(-2px)}
-.ok{background:#e4f6ea;border:1px solid #2e8b57;color:#14532d;padding:14px 18px;border-radius:10px;margin-bottom:20px;display:none}
+form{display:grid;gap:14px;background:#fff;color:var(--encre);padding:30px;border-radius:6px}
+label{font-weight:600;font-size:.95rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;padding:12px;border:1px solid #aebbd1;border-radius:4px;width:100%;background:#fff;color:var(--encre)}
+input:focus,select:focus,textarea:focus{outline:3px solid var(--ciel);border-color:var(--bleu)}
+form button{background:var(--bleu);color:#fff;border:0;padding:15px;border-radius:4px;font:600 1rem var(--texte);cursor:pointer}
+form button:hover{background:var(--nuit)}
+.ok{background:#e4f6ea;border:1px solid #2e8b57;color:#14532d;padding:14px 18px;border-radius:4px;margin-bottom:20px;display:none}
 .ok.visible{display:block}
 .honey{position:absolute;left:-9999px}
-.note{font-size:.85rem;color:var(--gris);font-weight:400}
-footer{background:#040f26;color:#b9c9e4;padding:44px 0;font-size:.95rem;line-height:1.9}
-footer .wrap{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
-footer a{color:#fff}
-.whatsapp{position:fixed;bottom:22px;right:20px;z-index:60;background:#128c4a;color:#fff;padding:14px 24px;border-radius:999px;font-weight:600;text-decoration:none;box-shadow:0 10px 26px -8px rgba(0,0,0,.5);transition:transform .2s}
-.whatsapp:hover{background:#0e6f3a;transform:translateY(-2px)}
-.menu{display:none;background:transparent;border:1px solid rgba(255,255,255,.4);color:#fff;font:600 .9rem var(--texte);padding:8px 16px;border-radius:999px;cursor:pointer}
-dialog{border:0;background:transparent;max-width:min(94vw,1100px);max-height:92vh;margin:auto;padding:0;overflow:visible}
-dialog::backdrop{background:rgba(4,15,38,.94)}
-dialog img{max-width:100%;max-height:86vh;display:block;margin:auto;border-radius:var(--r)}
-.lb-x{position:absolute;top:-46px;right:0;background:none;border:0;color:#fff;font-size:2.2rem;line-height:1;cursor:pointer}
-.js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
-.js .rv.vu{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.js .rv{opacity:1;transform:none;transition:none}*{transition:none!important}}
-.cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:80;max-width:880px;margin:auto;background:#fff;color:var(--encre);padding:18px 24px;border-radius:var(--r);display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;box-shadow:0 20px 50px -10px rgba(0,0,0,.45);border-top:4px solid var(--orange)}
-.cookies[hidden]{display:none}
-.cookies p{font-size:.95rem;max-width:42em}
-.cookies div{display:flex;gap:10px}
-.cookies button{font:600 .95rem var(--texte);padding:10px 22px;border-radius:999px;cursor:pointer;border:2px solid var(--bleu)}
-#ck-ok{background:var(--bleu);color:#fff}#ck-no{background:#fff;color:var(--bleu)}
-.dd{position:relative}
-.dd-m{display:none;position:absolute;top:100%;left:-16px;min-width:210px;background:var(--nuit);border:1px solid rgba(255,255,255,.18);border-radius:var(--r);padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.4)}
-.dd.ouvert .dd-m{display:block}
-.dd-m a{display:block;padding:10px 14px;border-radius:8px}
-.dd-m a::after{display:none}
-.dd-m a:hover{background:rgba(255,255,255,.1)}
-.dd-m a[hidden]{display:none}
-.annonce{background:var(--orange);color:var(--nuit);padding:11px 52px 11px 20px;text-align:center;font-weight:600;position:relative;display:flex;gap:14px;justify-content:center;align-items:center;flex-wrap:wrap}
-.annonce[hidden]{display:none}
-.an-btn{background:var(--nuit);color:#fff;padding:6px 18px;border-radius:999px;text-decoration:none;font-size:.92rem}
-#an-x{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:0;font-size:1.6rem;line-height:1;cursor:pointer;color:var(--nuit)}
-.vide{grid-column:1/-1;color:var(--gris);padding:30px;border:1px dashed #b8c5da;border-radius:var(--r);background:#fff;text-align:center}
-@media(min-width:901px){nav{gap:22px}nav a,.dd-b{font-size:.96rem}.dd:hover .dd-m{display:block}}
-@media(max-width:900px){
-.hero{padding:72px 0 80px}
-.hero .wrap,.contact .grille,.formation{grid-template-columns:1fr;gap:40px}
-.trois,.metiers{grid-template-columns:1fr}
-section{padding:68px 0}
-.menu{display:block}
-.bar>nav{display:none;order:4;width:100%;flex-direction:column;align-items:stretch;gap:0}
-.bar>nav.ouvert{display:flex}
-.bar>nav a,.dd-b{padding:14px 0;border-bottom:1px solid rgba(255,255,255,.14);width:100%;text-align:left}
-.dd-m{position:static;border:0;box-shadow:none;background:transparent;padding:0 0 0 14px}
-.etapes{grid-template-columns:1fr 1fr}
-form{padding:26px}
+
+footer{background:#061a42;color:#c5d4ec;padding:28px 0;font-size:.92rem;line-height:1.8}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+.whatsapp{position:fixed;bottom:22px;right:20px;z-index:60;background:#128c4a;color:#fff;padding:13px 22px;border-radius:32px;font-weight:600;text-decoration:none;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.whatsapp:hover{background:#0e6f3a}
+
+@media(max-width:860px){
+  .hero{padding:56px 0}
+  .hero .wrap,.contact .grille,.formation{grid-template-columns:1fr;gap:36px}
+  .trois,.metiers{grid-template-columns:1fr}
+  section{padding:60px 0}
+  .menu{display:block}
+  .bar>nav{display:none;order:4;width:100%;flex-direction:column;gap:0}
+  .bar>nav.ouvert{display:flex}
+  .bar>nav a{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .etapes{grid-template-columns:1fr 1fr}
+  .dd-b{width:100%;text-align:left;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.14)}
+  .dd-m{position:static;border:0;box-shadow:none;background:transparent;padding:0 0 0 14px}
 }
-@media(max-width:520px){.etapes{grid-template-columns:1fr}.wrap{padding:0 20px}}
+@media(max-width:520px){.etapes{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -230,16 +271,22 @@ form{padding:26px}
     <nav id="nav" aria-label="Navigation principale">
       <a href="#apropos" data-i18n="nav_apropos">À propos</a>
       <a href="#services" data-i18n="nav_services">Services</a>
+      <a href="#projets" data-i18n="nav_proj">Projets</a>
       <div class="dd">
         <button type="button" class="dd-b" aria-expanded="false" aria-controls="dd-m"><span data-i18n="nav_media">Médias</span> ▾</button>
         <div class="dd-m" id="dd-m">
           <a href="#realisations" data-i18n="nav_photos">Photos</a>
-          <a href="#videos" id="nav-vid" data-i18n="nav_vid">Vidéos</a>
-          <a href="#communiques" id="nav-com" data-i18n="nav_com">Communiqués</a>
+          <a href="#videos" id="nav-vid" data-i18n="nav_vid" hidden>Vidéos</a>
+          <a href="#communiques" id="nav-com" data-i18n="nav_com" hidden>Communiqués</a>
         </div>
       </div>
-      <a href="#appels" id="nav-ao" data-i18n="nav_ao">Appels d’offres</a>
-      <a href="#emplois" id="nav-emp" data-i18n="nav_emp">Emplois</a>
+      <div class="dd">
+        <button type="button" class="dd-b" aria-expanded="false" aria-controls="dd-m2"><span data-i18n="nav_opp">Opportunités</span> ▾</button>
+        <div class="dd-m" id="dd-m2">
+          <a href="#appels" id="nav-ao" data-i18n="nav_ao">Appels d’offres</a>
+          <a href="#emplois" id="nav-emp" data-i18n="nav_emp">Emplois</a>
+        </div>
+      </div>
       <a href="#contact" data-i18n="nav_contact">Contact</a>
     </nav>
     <div class="langues" role="group" aria-label="Langue">
@@ -247,6 +294,7 @@ form{padding:26px}
       <button type="button" data-lang="ln" aria-pressed="false">LN</button>
       <button type="button" data-lang="en" aria-pressed="false">EN</button>
     </div>
+    <a class="pub" id="btn-pub" href="/gestion.html" data-i18n="btn_pub" hidden>Publication</a>
     <button class="menu" type="button" aria-controls="nav" aria-expanded="false">Menu</button>
   </div>
 </header>
@@ -259,7 +307,7 @@ form{padding:26px}
         <p class="sous" data-i18n="hero_sous">BECP Builder conçoit, construit et entretient vos bâtiments et ouvrages en République démocratique du Congo.</p>
         <div class="actions">
           <a class="btn btn-1" href="#contact" data-i18n="btn_devis">Demander un devis</a>
-          <a class="btn btn-2" href="#realisations" data-i18n="btn_real">Voir nos réalisations</a>
+          <a class="btn btn-2" href="#projets" data-i18n="btn_real">Voir nos projets</a>
         </div>
       </div>
       <dl class="cartouche">
@@ -340,9 +388,17 @@ form{padding:26px}
     </div>
   </section>
 
-  <section id="realisations">
+  <section id="projets">
     <div class="wrap">
-      <h2 data-i18n="real_titre">Nos réalisations</h2>
+      <h2 data-i18n="pr_titre">Nos projets</h2>
+      <p class="intro" data-i18n="pr_intro">Nos projets récents et en cours.</p>
+      <div class="projets" id="pr-box"><p class="vide" data-i18n="pr_vide">Aucun projet publié pour le moment. Revenez bientôt.</p></div>
+    </div>
+  </section>
+
+  <section id="realisations" class="gris">
+    <div class="wrap">
+      <h2 data-i18n="real_titre">Galerie photos</h2>
       <p class="intro" data-i18n="real_intro">Quelques-uns de nos chantiers.</p>
       <div class="galerie">
         <figure><img src="chantier1.jpg" alt="Chantier BECP Builder 1" width="800" height="600" loading="lazy"></figure>
@@ -355,19 +411,19 @@ form{padding:26px}
     </div>
   </section>
 
-  <section id="videos" class="gris">
+  <section id="videos" class="gris" hidden>
     <div class="wrap">
       <h2 data-i18n="vid_titre">Vidéos</h2>
       <p class="intro" data-i18n="vid_intro">Nos chantiers en images animées.</p>
-      <div class="vids" id="vids"><p class="vide" data-i18n="vide">Aucune publication pour le moment. Revenez bientôt.</p></div>
+      <div class="vids" id="vids"></div>
     </div>
   </section>
 
-  <section id="communiques">
+  <section id="communiques" hidden>
     <div class="wrap">
       <h2 data-i18n="com_titre">Communiqués</h2>
       <p class="intro" data-i18n="com_intro">Les dernières informations de BECP Builder.</p>
-      <div class="coms" id="coms"><p class="vide" data-i18n="vide">Aucune publication pour le moment. Revenez bientôt.</p></div>
+      <div class="coms" id="coms"></div>
     </div>
   </section>
 
@@ -375,7 +431,7 @@ form{padding:26px}
     <div class="wrap">
       <h2 data-i18n="ao_titre">Appels d’offres</h2>
       <p class="intro" data-i18n="ao_intro">Consultez nos appels d’offres en cours et téléchargez les dossiers.</p>
-      <div class="offres" id="ao-box"><p class="vide" data-i18n="vide">Aucune publication pour le moment. Revenez bientôt.</p></div>
+      <div class="offres" id="ao-box"><p class="vide" data-i18n="ao_vide">Aucun appel d’offres en cours pour le moment. Revenez bientôt.</p></div>
     </div>
   </section>
 
@@ -383,7 +439,7 @@ form{padding:26px}
     <div class="wrap">
       <h2 data-i18n="emp_titre">Offres d’emploi</h2>
       <p class="intro" data-i18n="emp_intro">Rejoignez notre équipe : consultez nos postes ouverts et envoyez-nous votre candidature.</p>
-      <div class="offres" id="emp-box"><p class="vide" data-i18n="vide">Aucune publication pour le moment. Revenez bientôt.</p></div>
+      <div class="offres" id="emp-box"><p class="vide" data-i18n="emp_vide">Aucune offre d’emploi ouverte pour le moment. Revenez bientôt.</p></div>
     </div>
   </section>
 
@@ -396,14 +452,6 @@ form{padding:26px}
         <details><summary data-i18n="q3">Les études sont-elles facturées séparément ?</summary><p data-i18n="r3">Oui. Les honoraires d’étude rémunèrent les prestations intellectuelles du bureau d’étude, de manière distincte des travaux de construction.</p></details>
         <details><summary data-i18n="q4">Où se trouve votre siège ?</summary><p data-i18n="r4">À Kimpese, territoire de Songololo, province du Kongo Central. Contactez-nous pour savoir si nous pouvons intervenir sur votre site.</p></details>
       </div>
-    </div>
-  </section>
-
-  <section class="cta">
-    <div class="wrap">
-      <h2 data-i18n="cta_t">Un projet de construction ou de rénovation ?</h2>
-      <p data-i18n="cta_d">Parlons-en : nous établissons un devis estimatif détaillé et vous répondons rapidement.</p>
-      <div class="actions"><a class="btn btn-1" href="#contact" data-i18n="btn_devis">Demander un devis</a><a class="btn btn-2" href="https://wa.me/243836258385" target="_blank" rel="noopener noreferrer" data-i18n="cta_wa">Écrire sur WhatsApp</a></div>
     </div>
   </section>
 
@@ -454,9 +502,28 @@ form{padding:26px}
 <footer>
   <div class="wrap">
     <p><strong>BECP Builder</strong> – <span data-i18n="slogan">De l’étude à la réalisation</span><br><span data-i18n="tagline">Bureau d’étude et de conception des projets de construction</span><br>Kimpese, Territoire de Songololo, Kongo Central, RDC</p>
-    <p>Id. Nat. : 10-FA200-NA3411 | RCCM : MNG/RCCM/23-B-728<br>© 2026 BECP Builder | <a href="mentions-legales.html" data-i18n="ml_lien">Mentions légales</a> | <a href="#" id="ck-gerer" data-i18n="ck_gerer">Gérer les cookies</a> | <a href="/gestion.html" data-i18n="ad_lien">Administration</a></p>
+    <p>Id. Nat. : 10-FA200-NA3411 | RCCM : MNG/RCCM/23-B-728<br>© 2026 BECP Builder | <a href="mentions-legales.html" data-i18n="ml_lien">Mentions légales</a> | <a href="#" id="ck-gerer" data-i18n="ck_gerer">Gérer les cookies</a><span id="ft-admin" hidden> | <a href="/gestion.html" data-i18n="ad_lien">Administration</a></span></p>
   </div>
 </footer>
+
+<dialog id="pc" aria-label="Candidature">
+  <button class="pc-x" type="button" id="pc-x" aria-label="Fermer">×</button>
+  <h3><span data-i18n="pc_titre">Postuler à l’offre</span> : <span id="pc-offre"></span></h3>
+  <form id="pc-form">
+    <input class="honey" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <label><span data-i18n="pc_nom">Nom complet</span><input type="text" name="nom" autocomplete="name" maxlength="80" required></label>
+    <label><span data-i18n="l_email">E-mail</span><input type="email" name="email" autocomplete="email" maxlength="120" required></label>
+    <label><span data-i18n="l_tel">Téléphone</span><input type="tel" name="tel" autocomplete="tel" pattern="[+0-9 ()\-]{7,20}" maxlength="20" required></label>
+    <label><span data-i18n="l_msgc">Message (facultatif)</span><textarea name="message" rows="3" maxlength="1500"></textarea></label>
+    <label><span data-i18n="l_cv">CV</span><input type="file" name="cv" accept=".pdf,.doc,.docx" required></label>
+    <label><span data-i18n="l_lm">Lettre de motivation</span><input type="file" name="lettre" accept=".pdf,.doc,.docx" required></label>
+    <label><span data-i18n="l_autres">Autres documents (facultatif)</span><input type="file" name="autres" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple></label>
+    <p class="pc-aide" data-i18n="pc_aide">PDF, Word, JPG ou PNG. 4 Mo maximum par fichier, 10 Mo au total.</p>
+    <label class="cons"><input type="checkbox" name="cons" required><span data-i18n="pc_cons">J’accepte que mes données soient utilisées pour traiter ma candidature.</span></label>
+    <button type="submit" data-i18n="pc_envoyer">Envoyer ma candidature</button>
+    <p id="pc-msg" role="status"></p>
+  </form>
+</dialog>
 
 <dialog id="lb" aria-label="Photo"><button class="lb-x" type="button" aria-label="Fermer">×</button><img src="" alt=""></dialog>
 
@@ -470,7 +537,7 @@ form{padding:26px}
 <script>
 const T={
 fr:{},
-en:{tagline:"Design and engineering office for construction projects",dir_lbl:"Civil engineer",tx_titre:"Our usual works",t1:"Masonry and rendering",t2:"Reinforced concrete, lintels and ring beams",t3:"Timber roof frames and roofing",t4:"Ceilings",t5:"Metal and wooden doors",t6:"Water-based and oil paint",t7:"Paving and wall tiles",t8:"Sanitation: latrines and soakaway pits",faq_titre:"Frequently asked questions",q1:"How do I get a quote?",r1:"Send us your request through the form, on WhatsApp or by phone. We prepare a detailed estimate with quantities.",q2:"What does a quote include?",r2:"Each work item is detailed with its unit, quantity, unit price and total price, together with the necessary study services.",q3:"Are studies invoiced separately?",r3:"Yes. Study fees pay for the design office’s intellectual services, separately from the construction works.",q4:"Where is your head office?",r4:"In Kimpese, Songololo territory, Kongo Central province. Contact us to find out whether we can work on your site.",map_lien:"View on Google Maps",ml_lien:"Legal notice",nav_ao:"Tenders",nav_emp:"Jobs",ao_titre:"Calls for tenders",ao_intro:"See our current calls for tenders and download the files.",emp_titre:"Job openings",emp_intro:"Join our team: see our open positions and send us your application.",b_postuler:"Apply",b_dossier:"Download the file",b_question:"Contact us",lbl_limite:"Deadline",clos:"Closed",nav_media:"Media",nav_photos:"Photos",nav_vid:"Videos",vid_titre:"Videos",vid_intro:"Our sites in motion.",ad_lien:"Administration",me_titre:"Our method",me_intro:"Four steps, from the first study to the upkeep of the finished structure.",m1_t:"Study",m1_d:"Analysis of your needs, surveys and preliminary studies.",m2_t:"Design",m2_d:"Drawings, structural calculations and sizing of the works.",m3_t:"Construction",m3_d:"Execution of the works, coordination and site control.",m4_t:"Follow-up",m4_d:"Handover, upkeep and maintenance of the delivered structures.",f_note:"Your details are used only to reply to your request.",f_envoi:"Sending…",ck_txt:"We use audience-measurement cookies (Google) to improve this site. You may decline.",ck_ok:"Accept",ck_no:"Decline",ck_gerer:"Manage cookies",nav_com:"News",com_titre:"Announcements",com_intro:"The latest news from BECP Builder.",skip:"Skip to content",nav_apropos:"About",nav_services:"Services",nav_real:"Our work",nav_contact:"Contact",
+en:{pc_titre:"Apply for the position",pc_nom:"Full name",l_msgc:"Message (optional)",l_cv:"CV",l_lm:"Cover letter",l_autres:"Other documents (optional)",pc_aide:"PDF, Word, JPG or PNG. 4 MB per file, 10 MB in total.",pc_cons:"I agree that my data may be used to process my application.",pc_envoyer:"Send my application",pc_envoi:"Sending…",pc_ok:"Thank you, your application has been sent.",pc_err:"Sending failed. Please email us at becpbuilder@gmail.com with your documents.",pc_type:"Accepted formats: PDF, Word, JPG, PNG.",pc_big:"A file is larger than 4 MB.",pc_tot:"Total size exceeds 10 MB (8 files maximum).",btn_pub:"Publish",nav_proj:"Projects",nav_opp:"Opportunities",pr_titre:"Our projects",pr_intro:"Our recent and ongoing projects.",pr_vide:"No projects published yet. Please check back soon.",p_termine:"Completed",p_cours:"In progress",p_etude:"At study stage",ao_vide:"No calls for tenders at the moment. Please check back soon.",emp_vide:"No open positions at the moment. Please check back soon.",tagline:"Design and engineering office for construction projects",dir_lbl:"Civil engineer",tx_titre:"Our usual works",t1:"Masonry and rendering",t2:"Reinforced concrete, lintels and ring beams",t3:"Timber roof frames and roofing",t4:"Ceilings",t5:"Metal and wooden doors",t6:"Water-based and oil paint",t7:"Paving and wall tiles",t8:"Sanitation: latrines and soakaway pits",faq_titre:"Frequently asked questions",q1:"How do I get a quote?",r1:"Send us your request through the form, on WhatsApp or by phone. We prepare a detailed estimate with quantities.",q2:"What does a quote include?",r2:"Each work item is detailed with its unit, quantity, unit price and total price, together with the necessary study services.",q3:"Are studies invoiced separately?",r3:"Yes. Study fees pay for the design office’s intellectual services, separately from the construction works.",q4:"Where is your head office?",r4:"In Kimpese, Songololo territory, Kongo Central province. Contact us to find out whether we can work on your site.",map_lien:"View on Google Maps",ml_lien:"Legal notice",nav_ao:"Tenders",nav_emp:"Jobs",ao_titre:"Calls for tenders",ao_intro:"See our current calls for tenders and download the files.",emp_titre:"Job openings",emp_intro:"Join our team: see our open positions and send us your application.",b_postuler:"Apply",b_dossier:"Download the file",b_question:"Contact us",lbl_limite:"Deadline",clos:"Closed",nav_media:"Media",nav_photos:"Photos",nav_vid:"Videos",vid_titre:"Videos",vid_intro:"Our sites in motion.",ad_lien:"Administration",me_titre:"Our method",me_intro:"Four steps, from the first study to the upkeep of the finished structure.",m1_t:"Study",m1_d:"Analysis of your needs, surveys and preliminary studies.",m2_t:"Design",m2_d:"Drawings, structural calculations and sizing of the works.",m3_t:"Construction",m3_d:"Execution of the works, coordination and site control.",m4_t:"Follow-up",m4_d:"Handover, upkeep and maintenance of the delivered structures.",f_note:"Your details are used only to reply to your request.",f_envoi:"Sending…",ck_txt:"We use audience-measurement cookies (Google) to improve this site. You may decline.",ck_ok:"Accept",ck_no:"Decline",ck_gerer:"Manage cookies",nav_com:"News",com_titre:"Announcements",com_intro:"The latest news from BECP Builder.",skip:"Skip to content",nav_apropos:"About",nav_services:"Services",nav_real:"Our work",nav_contact:"Contact",
 hero_titre:"From study to completion",hero_sous:"BECP Builder designs, builds and maintains buildings and structures in the Democratic Republic of the Congo.",btn_devis:"Request a quote",btn_real:"See our projects",lbl_siege:"Office",tel_label:"Phone",
 ap_titre:"About BECP Builder",ap_intro:"BECP Builder is a design and engineering office for construction projects, based in Kimpese (Kongo Central). We follow each project from preliminary studies to delivery.",
 ap1_t:"Who we are",ap1_d:"We work in technical studies, design, construction, renovation and project supervision.",
@@ -483,9 +550,9 @@ s3_t:"Steel construction",s3_d:"Strong, custom-made steel frames and structures.
 s4_t:"Structure maintenance",s4_d:"Regular upkeep and monitoring to extend the life of your structures.",
 etudes_titre:"Technical studies",etudes_d:"Preliminary consultations, feasibility studies, architectural and technical design, calculation notes, sizing, modelling, drawings, quantity and cost estimates, technical reports and technical assistance, plus planning, coordination and site supervision.",
 form_titre:"Professional training",form_d:"Training in the technical software used in design offices:",
-real_titre:"Our projects",real_intro:"A selection of our sites.",
+real_titre:"Photo gallery",real_intro:"A selection of our sites.",
 contact_titre:"Request a quote",contact_intro:"Describe your project and we will get back to you quickly.",
-l_nom:"Name",l_email:"Email",l_tel:"Phone",l_service:"Service",l_msg:"Your project",f_envoyer:"Send my request",f_ok:"Thank you, your request has been sent.",vide:"No posts yet. Please check back soon.",cta_t:"A construction or renovation project?",cta_d:"Let’s talk: we prepare a detailed estimate and reply quickly.",cta_wa:"Write on WhatsApp",slogan:"From study to completion"},
+l_nom:"Name",l_email:"Email",l_tel:"Phone",l_service:"Service",l_msg:"Your project",f_envoyer:"Send my request",f_ok:"Thank you, your request has been sent.",slogan:"From study to completion"},
 ln:{skip:"Koleka na mosala",nav_apropos:"Mpo na biso",nav_services:"Misala",nav_real:"Misala mizalaki",nav_contact:"Kutana na biso",
 hero_titre:"Longwa na boyekoli tii na kosala",btn_devis:"Senga devi",lbl_siege:"Esika",tel_label:"Telefoni",
 services_titre:"Misala na biso",
@@ -564,7 +631,6 @@ charger('content/galerie.json').then(d=>{
   hideBroken();
 });
 
-const hd=document.querySelector('header');addEventListener('scroll',()=>hd.classList.toggle('scrolled',scrollY>8),{passive:true});
 /* Menu mobile */
 const mb=document.querySelector('.menu'),nv=document.getElementById('nav');
 mb.addEventListener('click',()=>{const o=nv.classList.toggle('ouvert');mb.setAttribute('aria-expanded',String(o));});
@@ -605,12 +671,15 @@ document.querySelector('form').addEventListener('submit',e=>{
 });
 
 /* Menu déroulant */
-const dd=document.querySelector('.dd'),ddb=dd.querySelector('.dd-b');
-function fermerDD(){dd.classList.remove('ouvert');ddb.setAttribute('aria-expanded','false');}
-ddb.addEventListener('click',e=>{e.stopPropagation();const o=dd.classList.toggle('ouvert');ddb.setAttribute('aria-expanded',String(o));});
-document.addEventListener('click',e=>{if(!dd.contains(e.target))fermerDD();});
+const dds=[...document.querySelectorAll('.dd')];
+function fermerDD(sauf){dds.forEach(d=>{if(d!==sauf){d.classList.remove('ouvert');d.querySelector('.dd-b').setAttribute('aria-expanded','false');}});}
+dds.forEach(d=>{
+  const b=d.querySelector('.dd-b');
+  b.addEventListener('click',e=>{e.stopPropagation();fermerDD(d);const o=d.classList.toggle('ouvert');b.setAttribute('aria-expanded',String(o));});
+  d.addEventListener('click',e=>{if(e.target.closest('.dd-m a'))fermerDD();});
+});
+document.addEventListener('click',e=>{if(!e.target.closest('.dd'))fermerDD();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')fermerDD();});
-dd.addEventListener('click',e=>{if(e.target.closest('.dd-m a'))fermerDD();});
 
 /* Vidéos : lien YouTube ou fichier MP4 */
 function ytId(u){const m=String(u).match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);return m?m[1]:null;}
@@ -657,6 +726,8 @@ charger('content/annonce.json').then(d=>{
 /* Offres d'emploi et appels d'offres */
 Object.assign(FR,{b_postuler:'Postuler',b_dossier:'Télécharger le dossier',b_question:'Nous écrire',lbl_limite:'Date limite',clos:'Clôturé'});
 const MAIL='becpbuilder@gmail.com';
+/* Candidature en ligne : collez ici l'adresse de l'application web Google et le même code secret que dans le script */
+const CAND_URL='',CAND_TOKEN='';
 const g=id=>document.getElementById(id);
 function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
 function tr(e,k,fr){e.dataset.i18n=k;e.textContent=fr;return e;}
@@ -682,7 +753,13 @@ function actions(a,items){
 }
 function mkEmploi(o,clos){
   const a=offre(o,clos);
-  if(!clos)actions(a,[['b_postuler','Postuler','mailto:'+MAIL+'?subject='+encodeURIComponent('Candidature : '+o.titre)]]);
+  if(!clos){
+    if(CAND_URL){
+      const d=el('div','acts'),b=tr(el('button','btn btn-3'),'b_postuler','Postuler');
+      b.type='button';b.addEventListener('click',()=>ouvrirPostuler(o));
+      d.appendChild(b);a.appendChild(d);
+    }else actions(a,[['b_postuler','Postuler','mailto:'+MAIL+'?subject='+encodeURIComponent('Candidature : '+o.titre)]]);
+  }
   return a;
 }
 function mkAppel(o,clos){
@@ -699,13 +776,76 @@ function opportunites(url,cle,sec,nav,box,mk){
     const t=new Date().toISOString().slice(0,10);
     const ouvert=o=>!o.date_limite||String(o.date_limite).slice(0,10)>=t;
     const ordre=[...l.filter(ouvert).sort((a,b)=>String(a.date_limite||'9').localeCompare(String(b.date_limite||'9'))),...l.filter(o=>!ouvert(o))];
+    g(box).textContent='';
     ordre.forEach(o=>g(box).appendChild(mk(o,!ouvert(o))));
     g(sec).hidden=false;g(nav).hidden=false;fmtDates();
   });
 }
 opportunites('content/appels.json','appels','appels','nav-ao','ao-box',mkAppel);
 opportunites('content/emplois.json','offres','emplois','nav-emp','emp-box',mkEmploi);
-['vids','coms','ao-box','emp-box'].forEach(id=>{const b=g(id);new MutationObserver(()=>{const v=b.querySelector('.vide');if(v&&b.children.length>1)v.remove();}).observe(b,{childList:true});});
+
+/* Projets publiés depuis l'administration */
+Object.assign(FR,{p_termine:'Terminé',p_cours:'En cours',p_etude:'En étude'});
+charger('content/projets.json').then(d=>{
+  const l=((d&&d.projets)||[]).filter(p=>p&&p.titre);
+  if(!l.length)return;
+  const box=g('pr-box');box.textContent='';
+  l.forEach(p=>{
+    const a=el('article','projet');
+    if(p.image){const im=el('img');im.src=p.image;im.alt=p.titre;im.loading='lazy';im.width=800;im.height=500;im.addEventListener('error',()=>{im.style.display='none';});a.appendChild(im);}
+    const c=el('div','corps');
+    const st={termine:['p_termine','Terminé'],cours:['p_cours','En cours'],etude:['p_etude','En étude']}[p.statut];
+    if(st)c.appendChild(tr(el('span','tag'),st[0],st[1]));
+    c.appendChild(el('h3','',p.titre));
+    const m=[p.lieu,p.annee].filter(Boolean).join(' | ');
+    if(m)c.appendChild(el('p','meta',m));
+    if(p.description)c.appendChild(el('p','desc',p.description));
+    a.appendChild(c);box.appendChild(a);
+  });
+});
+
+/* Bouton Publication : visible seulement sur l'appareil de l'administrateur (après connexion à /gestion.html) */
+try{if(localStorage.getItem('admin')==='1'){g('btn-pub').hidden=false;g('ft-admin').hidden=false;}}catch(e){}
+
+/* Candidature en ligne */
+const pc=g('pc'),pcf=g('pc-form'),pcm=g('pc-msg');
+let pcOffre=null;
+function tx(k,fr){const l=document.documentElement.lang;return (T[l]&&T[l][k])||fr;}
+function ouvrirPostuler(o){
+  pcOffre=o;g('pc-offre').textContent=o.titre;
+  pcf.reset();pcm.textContent='';pcm.className='';
+  pcf.querySelector('button[type=submit]').disabled=false;
+  pc.showModal();
+}
+g('pc-x').addEventListener('click',()=>pc.close());
+const EXT_OK=/\.(pdf|docx?|jpe?g|png)$/i,MAX_F=4*1024*1024,MAX_T=10*1024*1024;
+function lire(f,role){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res({role,nom:f.name,type:f.type||'application/octet-stream',data:String(r.result).split(',')[1]});r.onerror=rej;r.readAsDataURL(f);});}
+function pcErreur(k,fr){pcm.className='pc-err';pcm.textContent=tx(k,fr);}
+pcf.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(pcf.website.value)return;
+  const btn=pcf.querySelector('button[type=submit]');
+  const liste=[['cv',pcf.cv.files[0]],['lettre',pcf.lettre.files[0]],...[...pcf.autres.files].map(f=>['autre',f])].filter(x=>x[1]);
+  let tot=0;
+  for(const [,f] of liste){
+    if(!EXT_OK.test(f.name))return pcErreur('pc_type','Formats acceptés : PDF, Word, JPG, PNG.');
+    if(f.size>MAX_F)return pcErreur('pc_big','Un fichier dépasse 4 Mo.');
+    tot+=f.size;
+  }
+  if(tot>MAX_T||liste.length>8)return pcErreur('pc_tot','Le total dépasse 10 Mo (8 fichiers maximum).');
+  btn.disabled=true;pcm.className='';pcm.textContent=tx('pc_envoi','Envoi en cours…');
+  try{
+    const fichiers=await Promise.all(liste.map(([r,f])=>lire(f,r)));
+    const rep=await fetch(CAND_URL,{method:'POST',body:JSON.stringify({
+      token:CAND_TOKEN,offre:pcOffre.titre,reference:pcOffre.reference||'',
+      nom:pcf.nom.value.trim(),email:pcf.email.value.trim(),tel:pcf.tel.value.trim(),message:pcf.message.value.trim(),fichiers})});
+    const j=await rep.json();
+    if(!j.ok)throw new Error(j.erreur);
+    pcf.reset();pcm.className='pc-ok';pcm.textContent=tx('pc_ok','Merci, votre candidature a bien été envoyée.');
+  }catch(err){
+    btn.disabled=false;pcErreur('pc_err','Envoi impossible. Écrivez-nous à '+MAIL+' en joignant votre dossier.');
+  }
+});
 </script>
 </body>
 </html>
