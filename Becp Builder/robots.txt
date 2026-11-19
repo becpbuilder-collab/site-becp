@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /gestion.html
+
+Sitemap: https://becpbuilder.netlify.app/sitemap.xml
